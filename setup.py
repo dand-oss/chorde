@@ -1,5 +1,6 @@
 import sys
 import os.path
+import platform
 
 try:
     from setuptools import setup, Extension
@@ -11,6 +12,10 @@ try:
     from Cython.Distutils import build_ext, Extension
     from Cython.Build import cythonize
 except:
+    no_pyrex = True
+
+if platform.python_implementation() == 'PyPy':
+    # Even though pypy may have Pyrex or Cython, cython LRU isn't compatible with cpyext
     no_pyrex = True
 
 VERSION = "1.0.11"
