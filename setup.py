@@ -1,12 +1,12 @@
-import sys
 import os.path
+import platform
 
 try:
     from setuptools import setup, Extension
 except ImportError:
     from distutils.core import setup, Extension
 
-if sys.subversion[0] == 'PyPy':
+if platform.python_implementation() == 'PyPy':
     # Even though pypy may have Pyrex or Cython, cython LRU isn't compatible with cpyext
     no_pyrex = True
 else:
